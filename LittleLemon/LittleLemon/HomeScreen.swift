@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    let persistence = PersistenceController.shared
     var body: some View {
         VStack{
             TabView {
@@ -17,7 +18,9 @@ struct HomeScreen: View {
                     }
                 
                 // Add the Menu screen as a new tab
+                
                 Menu()
+                    .environment(\.managedObjectContext, persistence.container.viewContext)
                     .tabItem {
                         Label("Menu", systemImage: "list.dash")
                     }
